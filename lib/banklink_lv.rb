@@ -1,3 +1,5 @@
+require 'banklink_lv/version'
+
 require 'active_support'
 
 require 'net/http'
@@ -16,6 +18,7 @@ require 'banklink_lv/base'
 require 'banklink_lv/helper'
 require 'banklink_lv/swedbank'
 require 'app/helpers/banklink_helper'
+
 #include ActiveSupport
 
 %w{ models controllers helpers }.each do |dir|
