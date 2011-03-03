@@ -10,7 +10,6 @@ Gem::Specification.new do |s|
   s.homepage = "http://creo.mobi"
   s.platform = Gem::Platform::RUBY
   s.summary = "Banklink integration in your website without active merchant (Latvia)"
-  s.files = PKG_FILES.to_a
   s.require_path = "lib"
   s.has_rdoc = false
   s.extra_rdoc_files = ["README"]
