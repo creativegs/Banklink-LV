@@ -1,0 +1,3 @@
+sqlite:
+  :adapter: sqlite
+  :dbfile: vendor/plugins/banklink_lv/test/banklink_lv_plugin.sqlite.db
