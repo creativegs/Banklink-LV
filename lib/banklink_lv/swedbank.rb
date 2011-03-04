@@ -30,14 +30,15 @@ module SwedbankLv
   def self.service_url
     mode = Rails.env
     case mode
-    when :production
+    when 'production'
       self.production_url
-    when :test
+    when 'test'
       self.test_url
-    when :development
+    when 'development'
       self.test_url
     else
-      raise StandardError, "Integration mode set to an invalid value: #{mode}"
+      self.test_url
+      # raise StandardError, "Integration mode set to an invalid value: #{mode}"
     end
   end
 
