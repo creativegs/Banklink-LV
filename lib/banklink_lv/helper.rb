@@ -71,7 +71,7 @@ module Banklink #:nodoc:
 
     # Default parameters
     def vk_charset
-      'ISO-8859-1'
+      'UTF-8'
     end
 
     def vk_charset_param
