@@ -1,0 +1,70 @@
+= Swedbank Banklink
+
+Payment system integration for Latvian banks what uses banklink API.
+
+== Supported banks
+
+ Swedbank (Latvia)
+
+== Installation
+
+=== From Ruby Gems
+
+Not yet in RubyGems
+
+=== From Git
+
+Insert this into your Gemfile
+
+  gem "banklink_lv", :git => 'git://github.com/CreativeMobile/Banklink-LV.git' 
+
+=== Configurations
+
+Insert this in your config file:
+  
+  SwedbankLv.private_key = File.read("#{Rails.root}/path/to/your_private_key")
+  SwedbankLv.bank_certificate = File.read("#{Rails.root}/path/to/bank_public_key")
+  SwedbankLv.production_url = "https://ib.swedbank.lv/banklink"
+  
+  SwedbankLv.test_private_key = File.read("#{Rails.root}/path/to/your_test_private_key")
+  SwedbankLv.test_bank_certificate = File.read("#{Rails.root}/path/to/test_bank_public_key")
+  SwedbankLv.test_url = "https://ib.swedbank.lv/banklink"
+
+include Banklink into your controller and make Helper for view:
+
+    options = {}
+    options[:amount] = '0.01'
+    options[:currency] = 'LVL'
+    options[:return] = 'http://yourapp.com/'
+    options[:reference] = '454'
+    options[:message] = 'Testing banklink'
+    @helper = Helper.new(TRANS_ID, YOUR_SENDER_ID, options)
+    
+Then create Notification controller for notify and include Banklink. Then you can notify:
+  
+    notify = Banklink::Notification.new(params)
+    @text
+    if notify.acknowledge
+      if notify.complete?
+        @text = "Thanks!"
+      elsif notify.failed?
+        @text = "You didn't paid!"
+      else
+        @text = "Wait or other status"
+      end
+    else
+      @text = "Stmx went wrong"
+    end
+    
+Thats all!
+  
+
+== Testing
+
+You can run the tests from this gem with (inside the banklink_lv directory):
+
+  rake
+
+== Maintainer
+
+This gem is maintained by {Arturs Braucs @ Creative Mobile}[mailto:arturs@creo.mobi]
