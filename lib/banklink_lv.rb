@@ -6,11 +6,11 @@ require 'net/http'
 require 'net/https'
 require 'uri'
 
-require 'json'
-
 require 'digest'
 require 'md5'
 require 'openssl'
+
+require 'iconv'
 
 require 'banklink_lv/core_ext'
 require 'banklink_lv/banklink'
