@@ -11,6 +11,10 @@ module Banklink
     def initialize(post, options = {})
       @options = options
       empty!
+      #post = post.pack("U*")
+      
+      #iconv = Iconv.new('UTF-8', 'ISO-8859-1')
+      post = post.gsub("&#", "(redele)")
       parse(post)
     end
 
@@ -136,12 +140,9 @@ module Banklink
       puts "====== FROM BANK ======"
       for line in @raw.split('&')    
         key, value = *line.scan( %r{^([A-Za-z0-9_.]+)\=(.*)$} ).flatten
-        params[key] = CGI.unescape(value)
-        #params[key] = value.to_s.tr('+', ' ').gsub(/((?:%[0-9a-fA-F]{2})+)/n) do
-        #  [$1.delete('%')].pack('H*')
-        #end
+        params[key] = CGI.unescape(value.gsub("(redele)", "&#"))
         
-        puts "#{key} #{params[key]}"        
+        puts "<#{key}> #{params[key]}"        
       end
       puts "======================="
     end

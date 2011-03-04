@@ -4,7 +4,11 @@ class BanklinkNotificationTest < Test::Unit::TestCase
   include Banklink
 
   def setup
-    @swedbank = Banklink::Notification.new(http_raw_data)
+    @swedbank = Banklink::Notification.new(http_raw_data2)
+  end
+  
+  def test_acknowledgement
+    assert_equal true, @swedbank.acknowledge
   end
 
   def test_accessors
@@ -20,10 +24,6 @@ class BanklinkNotificationTest < Test::Unit::TestCase
 
   def test_compositions
     assert_equal 3300, @swedbank.amount
-  end
-
-  def test_acknowledgement
-    assert_equal true, @swedbank.acknowledge
   end
 
   def test_acknowledgement_fail_with_params_changed
