@@ -34,6 +34,8 @@ module SwedbankLv
       self.production_url
     when :test
       self.test_url
+    when :development
+      self.test_url
     else
       raise StandardError, "Integration mode set to an invalid value: #{mode}"
     end
