@@ -11,6 +11,7 @@ require 'md5'
 require 'openssl'
 
 require 'iconv'
+require 'cgi'
 
 require 'banklink_lv/core_ext'
 require 'banklink_lv/banklink'
