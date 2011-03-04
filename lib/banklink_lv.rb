@@ -17,6 +17,7 @@ require 'banklink_lv/banklink'
 require 'banklink_lv/base'
 require 'banklink_lv/helper'
 require 'banklink_lv/swedbank'
+require 'banklink_lv/notification'
 require 'app/helpers/banklink_helper'
 
 #include ActiveSupport

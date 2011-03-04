@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/test_helper'
 
 class BanklinkHelperTest < Test::Unit::TestCase
-  include Banklink::Helper
+  include Banklink
   
   def test_should_create_fields_for_1002
     options = {}

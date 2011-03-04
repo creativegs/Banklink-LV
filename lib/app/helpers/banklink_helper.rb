@@ -1,7 +1,6 @@
 module Banklink
   module ActionViewHelper
-    include SwedbankLv
-    include Banklink::Helper
+    include Banklink
     
     def payment_service_for(order, account, options = {}, &proc)          
       raise ArgumentError, "Missing block" unless block_given?

@@ -1,7 +1,42 @@
 module Banklink
-  module Notification
   
-    # A helper method to parse the raw post of the request & return
+  class Notification
+    include Banklink::Common
+    attr_accessor :params
+    attr_accessor :raw
+    
+    # set this to an array in the subclass, to specify which IPs are allowed to send requests
+    class_inheritable_accessor :production_ips
+
+    def initialize(post, options = {})
+      @options = options
+      empty!
+      parse(post)
+    end
+
+    def gross_cents
+      (gross.to_f * 100.0).round
+    end
+
+    # This combines the gross and currency and returns a proper Money object. 
+    # this requires the money library located at http://dist.leetsoft.com/api/money
+    def amount
+      return gross_cents
+    end
+
+    # reset the notification. 
+    def empty!
+      @params  = Hash.new
+      @raw     = ""      
+    end
+    
+    # Check if the request comes from an official IP
+    def valid_sender?(ip)
+      return true if Rails.env == :test || production_ips.blank?
+      production_ips.include?(ip)
+    end
+    
+        # A helper method to parse the raw post of the request & return
     # the right Notification subclass based on the sender id.
     #def self.get_notification(http_raw_data)
     #  params = ActiveMerchant::Billing::Integrations::Notification.new(http_raw_data).params
@@ -9,7 +44,7 @@ module Banklink
     #end
   
     def bank_signature_valid?(bank_signature, service_msg_number, sigparams)
-      self.class.parent.get_bank_public_key.verify(OpenSSL::Digest::SHA1.new, bank_signature, generate_data_string(service_msg_number, sigparams))
+      SwedbankLv.get_bank_public_key.verify(OpenSSL::Digest::SHA1.new, bank_signature, generate_data_string(service_msg_number, sigparams))
     end
   
     def complete?
@@ -91,14 +126,21 @@ module Banklink
     def acknowledge
       bank_signature_valid?(signature, params['VK_SERVICE'], params)
     end
-  
+    
+    
     private
+
     # Take the posted data and move the relevant data into a hash
-    # No parsing since we're already expecting a hash.
-    #def parse(params)
-    #  raise(ArgumentError, 'Need a hash') unless params.is_a?(Hash)
-    #  @params = params
-    #end
+    def parse(post)
+      @raw = post.to_s
+      puts "====== FROM BANK ======"
+      for line in @raw.split('&')    
+        key, value = *line.scan( %r{^([A-Za-z0-9_.]+)\=(.*)$} ).flatten
+        params[key] = CGI.unescape(value)
+        puts "#{key} #{params[key]}"        
+      end
+      puts "======================="
+    end
   end
 end
   
