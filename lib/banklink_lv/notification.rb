@@ -136,10 +136,10 @@ module Banklink
       puts "====== FROM BANK ======"
       for line in @raw.split('&')    
         key, value = *line.scan( %r{^([A-Za-z0-9_.]+)\=(.*)$} ).flatten
-        # params[key] = CGI.unescape(value)
-        params[key] = value.to_s.tr('+', ' ').gsub(/((?:%[0-9a-fA-F]{2})+)/n) do
-          [$1.delete('%')].pack('H*')
-        end
+        params[key] = CGI.unescape(value)
+        #params[key] = value.to_s.tr('+', ' ').gsub(/((?:%[0-9a-fA-F]{2})+)/n) do
+        #  [$1.delete('%')].pack('H*')
+        #end
         
         puts "#{key} #{params[key]}"        
       end
