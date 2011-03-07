@@ -30,7 +30,7 @@ Insert this in your config file:
   SwedbankLv.test_bank_certificate = File.read("#{Rails.root}/path/to/test_bank_public_key")
   SwedbankLv.test_url = "https://ib.swedbank.lv/banklink"
 
-include Banklink into your controller and make Helper for view:
+Helper for view:
 
     options = {}
     options[:amount] = '0.01'
@@ -38,9 +38,9 @@ include Banklink into your controller and make Helper for view:
     options[:return] = 'http://yourapp.com/'
     options[:reference] = '454'
     options[:message] = 'Testing banklink'
-    @helper = Helper.new(TRANS_ID, YOUR_SENDER_ID, options)
+    @helper = Banklink::Helper.new(TRANS_ID, YOUR_SENDER_ID, options)
     
-Then create Notification controller for notify and include Banklink. Then you can notify:
+Then create Notification controller for notify. Then you can notify:
   
     notify = Banklink::Notification.new(request.raw_post)
     @text

@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version = BanklinkLv::VERSION
   s.author = "Arturs Braucs"
   s.email = "arturs.braucs@gmail.com"
-  s.homepage = "http://creo.mobi"
+  s.homepage = "https://github.com/CreativeMobile/Banklink-LV"
   s.platform = Gem::Platform::RUBY
   s.summary = "Banklink integration in your website without active merchant (Latvia)"
   s.require_path = "lib"

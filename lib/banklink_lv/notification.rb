@@ -75,6 +75,14 @@ module Banklink
     def transaction_id
       params['VK_T_NO']
     end
+    
+    def sender_name
+      params['VK_SND_NAME']
+    end
+    
+    def sender_bank_account
+      params['VK_SND_ACC']
+    end
   
     # When was this payment received by the client.
     # We're expecting a dd.mm.yyyy format.
