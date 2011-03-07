@@ -5,7 +5,7 @@ module SwedbankLv
   mattr_accessor :test_bank_certificate
   # RSA public key of the bank, taken from the X509 certificate of the bank. OpenSSL container.
   def self.get_bank_public_key
-    if Rails.env == :production
+    if Rails.env == 'production'
       cert = self.bank_certificate
     else
       cert = self.test_bank_certificate
@@ -17,7 +17,7 @@ module SwedbankLv
   mattr_accessor :test_private_key
   # Our RSA private key. OpenSSL container.
   def self.get_private_key
-    if Rails.env == :production
+    if Rails.env == 'production'
       private_key = self.private_key
     else
       private_key = self.test_private_key
@@ -35,9 +35,9 @@ module SwedbankLv
     when 'test'
       self.test_url
     when 'development'
-      self.test_url
+      self.production_url
     else
-      self.test_url
+      self.production_url
       # raise StandardError, "Integration mode set to an invalid value: #{mode}"
     end
   end

@@ -10,7 +10,7 @@ module Banklink
 
     def initialize(post, options = {})
       @options = options
-      empty!            
+      empty!
       parse(post)
     end
 

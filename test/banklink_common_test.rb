@@ -4,7 +4,7 @@ class BanklinkCommonTest < Test::Unit::TestCase
   include Banklink::Common
   
   def test_should_decide_string_lenght
-    assert_equal "006", func_p("ARTŪRS")
+    assert_equal "007", func_p("ĀĒŪĪĻĶŠ")
   end
   
   def test_should_generate_data_string
