@@ -104,7 +104,9 @@ module Banklink
   module Common
     # p(x) is length of the field x represented by three digits
     def func_p(val)
-      sprintf("%03i", val.size)
+      size = sprintf("%03i", val.length_utf8)
+      puts "Size:#{size}:  #{val}"
+      size
     end
     
     # Generate a string to be signed out of service message parameters.

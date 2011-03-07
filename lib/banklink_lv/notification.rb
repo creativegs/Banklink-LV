@@ -10,11 +10,7 @@ module Banklink
 
     def initialize(post, options = {})
       @options = options
-      empty!
-      #post = post.pack("U*")
-      
-      #iconv = Iconv.new('UTF-8', 'ISO-8859-1')
-      post = post.gsub("&#", "(redele)")
+      empty!            
       parse(post)
     end
 
@@ -46,6 +42,10 @@ module Banklink
     #  params = ActiveMerchant::Billing::Integrations::Notification.new(http_raw_data).params
     #  Banklink.get_class(params)::Notification.new(http_raw_data)
     #end
+    
+    def get_data_string
+      generate_data_string(params['VK_SERVICE'], params)
+    end
   
     def bank_signature_valid?(bank_signature, service_msg_number, sigparams)
       SwedbankLv.get_bank_public_key.verify(OpenSSL::Digest::SHA1.new, bank_signature, generate_data_string(service_msg_number, sigparams))
@@ -140,7 +140,7 @@ module Banklink
       puts "====== FROM BANK ======"
       for line in @raw.split('&')    
         key, value = *line.scan( %r{^([A-Za-z0-9_.]+)\=(.*)$} ).flatten
-        params[key] = CGI.unescape(value.gsub("(redele)", "&#"))
+        params[key] = CGI.unescape(value)
         
         puts "<#{key}> #{params[key]}"        
       end
