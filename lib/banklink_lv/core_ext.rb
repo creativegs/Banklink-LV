@@ -1,12 +1,15 @@
+# encoding: utf-8
+
 String.class_eval do
   def to_squawk
     "squawk! #{self}".strip
   end
 end
 
+
 class String
 
-   require 'iconv' 
+   # require 'iconv' 
    require 'open-uri'      # cf. http://www.ruby-doc.org/stdlib/libdoc/open-uri/rdoc/index.html
 
    # taken from: http://www.w3.org/International/questions/qa-forms-utf-8

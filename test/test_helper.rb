@@ -1,13 +1,15 @@
+# encoding: utf-8
+
 ENV['RAILS_ENV'] = 'test'
 ENV['RAILS_ROOT'] ||= File.dirname(__FILE__) + '/../../../..'
  
 require 'test/unit'
-require File.expand_path(File.join(ENV['RAILS_ROOT'], 'config/environment.rb'))
+# require File.expand_path(File.join(ENV['RAILS_ROOT'], 'config/environment.rb'))
 
 require File.dirname(__FILE__) + '/../rails/init'
 
 # default params
-PARAMS_1002 = {'VK_SERVICE' => 'foo', 'VK_VERSION' => 'bar', 'VK_SND_ID' => 'goo', 'VK_STAMP' => 'tooboo', 'VK_AMOUNT' => '10565', 'VK_CURR' => 'LVL', 'VK_REF' => 'dsa', 'VK_MSG' => 'test'} 
+PARAMS_1002 = {'VK_SERVICE' => 'foo', 'VK_VERSION' => 'bar', 'VK_SND_ID' => 'goo', 'VK_STAMP' => 'tooboo', 'VK_AMOUNT' => '10565', 'VK_CURR' => 'LVL', 'VK_REF' => 'dsa', 'VK_MSG' => 'Āžēīū'} 
 
 SwedbankLv.test_private_key = <<EOF
 -----BEGIN RSA PRIVATE KEY-----

@@ -65,7 +65,7 @@ module Banklink #:nodoc:
       required_params = Banklink.required_service_params[@service_msg_number]
       required_params.each do |param|
         param_value = (@options.delete(param) || send(param.to_s.downcase)).to_s
-        add_field param, iconv.iconv(param_value)
+        add_field param, encode_to_utf8(param_value)
       end
     end
 
@@ -104,8 +104,10 @@ module Banklink #:nodoc:
     private
     # Iconv converter to convert from utf8 to
     # the charset the bank api expects.
-    def iconv
-      @iconv ||= Iconv.new(vk_charset, 'UTF-8')
+    
+    def encode_to_utf8 string
+      string.encode('UTF-8', :invalid => :replace, :replace => '').encode('UTF-8')
     end
+    
   end
 end
