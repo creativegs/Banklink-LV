@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    banklink_lv (1.0.0)
+    banklink_lv (1.0.1)
       activesupport
       rails
 
