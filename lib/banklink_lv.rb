@@ -13,16 +13,11 @@ require 'openssl'
 
 require 'cgi'
 
-# require 'banklink_lv/engine'
-# require 'banklink_lv/core_ext'
 require 'banklink_lv/banklink'
 require 'banklink_lv/base'
 require 'banklink_lv/helper'
 require 'banklink_lv/swedbank'
 require 'banklink_lv/notification'
-require 'app/helpers/banklink_helper'
-
-#include ActiveSupport
 
 %w{ models controllers helpers }.each do |dir|
   path = File.join(File.dirname(__FILE__), 'app', dir)

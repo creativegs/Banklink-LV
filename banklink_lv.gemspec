@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name = "banklink_lv"
   s.version = BanklinkLv::VERSION
   s.author = "Arturs Braucs"
-  s.email = "arturs.braucs@gmail.com"
+  s.email = ["arturs@creo.mobi"]
   s.homepage = "https://github.com/CreativeMobile/Banklink-LV"
   s.platform = Gem::Platform::RUBY
   s.summary = "Banklink integration in your website without active merchant (Latvia)"
@@ -18,4 +18,11 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
+  s.rubyforge_project = "banklink_lv"
+  
+  s.add_development_dependency 'rake'
+ 
+  s.add_dependency "activesupport"
+  s.add_dependency "rails"
+  
 end
