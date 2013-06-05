@@ -5,6 +5,7 @@ Payment system integration for Latvian banks what uses banklink API.
 == Supported banks
 
  Swedbank (Latvia)
+ Swedbank (Estonia)
 
 == Installation
 
@@ -36,7 +37,7 @@ Helper for view:
     options[:amount] = '0.01'
     options[:currency] = 'LVL'
     options[:return] = 'http://yourapp.com/'
-    options[:reference] = '454'
+    options[:reference] = '454' # Use only for Latvian Swedbank, because Estonia has special requirements. More information here - http://www.pangaliit.ee/en/settlements-and-standards/reference-number-of-the-invoice
     options[:message] = 'Testing banklink'
     @helper = Banklink::Helper.new(TRANS_ID, YOUR_SENDER_ID, options)
     

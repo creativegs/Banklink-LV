@@ -13,8 +13,9 @@ module Banklink #:nodoc:
       @options['VK_AMOUNT'] = options[:amount]
       @options['VK_CURR'] = options[:currency]
       @options['VK_RETURN'] = options[:return]
-      @options['VK_REF'] = options[:reference]
+      @options['VK_REF'] = options[:reference] || ""
       @options['VK_MSG'] = options[:message]
+      @options['VK_LANG'] = options[:lang] if options[:lang]
       
       if options[:service_msg_number]
         @service_msg_number = options.delete(:service_msg_number)
@@ -54,7 +55,11 @@ module Banklink #:nodoc:
     end
     
     def add_lang_field
-      add_field vk_lang_param, vk_lang
+      if @options['VK_LANG']
+        add_field(vk_lang_param, @options['VK_LANG'])
+      else
+        add_field vk_lang_param, vk_lang
+      end
     end
 
     def add_charset_field
@@ -78,7 +83,6 @@ module Banklink #:nodoc:
       'VK_ENCODING'
     end
     
-    # Default parameters
     def vk_lang
       'LAT'
     end

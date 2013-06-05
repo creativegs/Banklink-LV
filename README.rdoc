@@ -5,6 +5,7 @@ Payment system integration for Latvian banks what uses banklink API.
 == Supported banks
 
  Swedbank (Latvia)
+ Swedbank (Estonia)
 
 == Installation
 
